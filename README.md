@@ -1,5 +1,7 @@
 # Code to support the Velo and Tensorflow example
 
+This code applies the tensorflow toxicity model in a basic chat moderation flow on Velo by Wix
+
 ## Setup
 To use this code you must first create a wix site with Wix Chat enabled and dev mode turned on
 
