@@ -5,6 +5,8 @@ This code applies the tensorflow toxicity model in a basic chat moderation flow 
 ## Setup
 To use this code you must first create a wix site with Wix Chat enabled and dev mode turned on
 
+Add the following NPM packages to your velo site @tensorflow/tfjs @tensorflow-models/toxicity
+
 Place the two files in your backend code.  Note that events.js is a reserved file name.  If you change this, the code will not run. toxicity can be renamed, however, make sure to update any references to this file if you do so.
 
 ## Credit
