@@ -1,3 +1,6 @@
+# Updated
+This code was recently revisited and updated for use with Wix Studio.  This code no longer works with the packages at the tfjs repo, but required some additional dependencies to work. If you run into errors  yourself, consider adding the following packages
+
 # Code to support the Velo and Tensorflow example
 
 This code applies the tensorflow toxicity model in a basic chat moderation flow on Velo by Wix
