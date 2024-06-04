@@ -1,3 +1,5 @@
+//this code was written to be implemented on a classic wix editor using .jsw and may be out of date.
+
 import * as toxicity from '@tensorflow-models/toxicity';
 import wixChatBackend from 'wix-chat-backend';
 
