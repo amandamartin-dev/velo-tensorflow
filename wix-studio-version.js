@@ -1,4 +1,5 @@
 //This code is for use in a web.js file in Wix Studio
+//you will also need the events.js file
 
 import * as toxicity from '@tensorflow-models/toxicity';
 import { Permissions, webMethod } from "wix-web-module";
