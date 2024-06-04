@@ -1,5 +1,7 @@
 # Updated
-This code was recently revisited and updated for use with Wix Studio.  This code no longer works with the packages at the tfjs repo, but required some additional dependencies to work. If you run into errors  yourself, consider adding the following packages
+This code was recently revisited and updated for use with Wix Studio.  
+This code may require additional dependencies to work beyond /tfjs and /toxicity. Start with those two packages as reccomended by tensorflow.
+This demo was completed with the following dependencies installed on Wix Studio.
 
 ![list of NPM packages](https://github.com/amandamartin-dev/velo-tensorflow/blob/main/updated%20packages.jpg?raw=true)
 
