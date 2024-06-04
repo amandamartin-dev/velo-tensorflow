@@ -1,4 +1,4 @@
-//This code is for use in a web.js file in Wix Studio
+//This code is for use in a web.js file in Wix Studio or Classic Wix editor
 //you will also need the events.js file
 
 import * as toxicity from '@tensorflow-models/toxicity';
@@ -9,30 +9,19 @@ require('@tensorflow/tfjs');
 let model;
 
 export const predict = webMethod(
-  Permissions.Anyone, 
-  async (message, channelId) => { 
-    try {
-       const predictions = await classify(message, channelId);
-    return predictions
-    } catch (error) {
-      console.error("Error"+ error)
-    }
-  
-  }
-);
+    Permissions.Anyone, async (inputs, channelId) => {
+        model = await toxicity.load()
+        const results = await model.classify(inputs);
+       
+        const toxicityResult = results[6].results[0].match
+        console.log(results)
+        if (toxicityResult) {
+            sendWarning(channelId)
+        } else {
+            sendOk(channelId)
+        }
 
-const classify = async (inputs, channelId) => {
-    model = await toxicity.load()
-    const results = await model.classify(inputs);
-    console.log(results)
-    const toxicityResult = results[6].results[0].match
-    if (toxicityResult === true) {
-        sendWarning(channelId)
-    }else{
-      sendOk(channelId)
-    }
-
-};
+    });
 
 const sendWarning = (channelId) => {
     wixChatBackend.sendMessage({
@@ -41,7 +30,7 @@ const sendWarning = (channelId) => {
 
         })
         .then(() => {
-            console.log("Chat message sent");
+            console.log("Chat warning message sent");
         })
         .catch((error) => {
             console.error(error);
@@ -55,7 +44,7 @@ const sendOk = (channelId) => {
 
         })
         .then(() => {
-            console.log("Chat message sent");
+            console.log("Chat ok message sent");
         })
         .catch((error) => {
             console.error(error);
