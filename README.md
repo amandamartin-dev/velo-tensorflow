@@ -1,5 +1,5 @@
 # Updated
-This code was recently revisited and updated for use with Wix Studio.  
+This code was recently revisited and updated for use web,js files and is compatible with Classic Wix or Wix Studio.  
 This code may require additional dependencies to work beyond /tfjs and /toxicity. Start with those two packages as reccomended by tensorflow.
 This demo was completed with the following dependencies installed on Wix Studio.
 
