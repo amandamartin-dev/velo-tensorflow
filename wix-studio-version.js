@@ -23,6 +23,7 @@ export const predict = webMethod(
 const classify = async (inputs, channelId) => {
     model = await toxicity.load()
     const results = await model.classify(inputs);
+    console.log(results)
     const toxicityResult = results[6].results[0].match
     if (toxicityResult === true) {
         sendWarning(channelId)
@@ -32,7 +33,7 @@ const classify = async (inputs, channelId) => {
 
 };
 
-function sendWarning(channelId) {
+const sendWarning = (channelId) => {
     wixChatBackend.sendMessage({
             "messageText": "We don't do that here. Be nice and try again.",
             "channelId": channelId,
@@ -46,7 +47,7 @@ function sendWarning(channelId) {
         });
 }
 
-function sendOk(channelId) {
+const sendOk = (channelId) => {
     wixChatBackend.sendMessage({
             "messageText": "Thank you for contacting us, someone will be with you soon",
             "channelId": channelId,
