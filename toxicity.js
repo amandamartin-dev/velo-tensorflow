@@ -7,19 +7,30 @@ import wixChatBackend from 'wix-chat-backend';
 require('@tensorflow/tfjs');
 
 let model;
+let modelPromise;
+const loadModel = () => {
+    const includedLabels = ["toxicity"];
+    modelPromise = toxicity.load(0.9, includedLabels)
+};
+
+loadModel();
 
 export const predict = webMethod(
     Permissions.Anyone, async (inputs, channelId) => {
-        model = await toxicity.load()
-        const results = await model.classify(inputs);
-       
-        const toxicityResult = results[6].results[0].match
-        console.log(results)
-        if (toxicityResult) {
-            sendWarning(channelId)
-        } else {
-            sendOk(channelId)
-        }
+        console.time("Prediction time")
+        try {
+            model = await modelPromise
+            const results = await model.classify(inputs);
+            const toxicityResult = results[0].results[0].match
+
+            if (toxicityResult) {
+                return sendWarning(channelId)
+            } else {
+                return sendOk(channelId)
+            }
+        } catch (error) {
+            console.error("Error during prediction:", error);
+        } 
 
     });
 
@@ -31,6 +42,7 @@ const sendWarning = (channelId) => {
         })
         .then(() => {
             console.log("Chat warning message sent");
+            console.timeEnd("Prediction Time");
         })
         .catch((error) => {
             console.error(error);
@@ -45,6 +57,7 @@ const sendOk = (channelId) => {
         })
         .then(() => {
             console.log("Chat ok message sent");
+            console.timeEnd("Prediction Time");
         })
         .catch((error) => {
             console.error(error);
